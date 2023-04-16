@@ -1,0 +1,22 @@
+version: '3'
+services:
+  redis:
+    image: 'redis'
+    container_name: redins_con
+    networks:
+      - my_network
+    depends_on:
+      - backend
+
+
+  backend:
+    build: .
+    container_name: backend_con
+    ports:
+      - '5000:5000'
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
